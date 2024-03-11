@@ -5,7 +5,7 @@ if __name__=='__main__':
     spark = SparkSession.builder.appName("WeatherJ").getOrCreate()
 
     df = spark.read.load(
-        'test_data/example.json',
+        'test_data/json/*.json',
         format = 'json',
         multiLine = True,
         schema=None
