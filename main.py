@@ -1,4 +1,3 @@
-import requests
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 
@@ -14,3 +13,5 @@ if __name__=='__main__':
 
     #print(df.select(avg('temperature')).show())
     print(df.show())
+
+    df.write.csv('test_data/csv', header=True, mode="overwrite")
