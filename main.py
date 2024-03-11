@@ -1,9 +1,8 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 
-if __name__=='__main__':
+def main():
     spark = SparkSession.builder.appName("WeatherJ").getOrCreate()
-
     df = spark.read.load(
         'test_data/json/*.json',
         format = 'json',
@@ -11,7 +10,8 @@ if __name__=='__main__':
         schema=None
     )
 
-    #print(df.select(avg('temperature')).show())
     print(df.show())
-
     df.write.csv('test_data/csv', header=True, mode="overwrite")
+
+if __name__=='__main__':
+    main()

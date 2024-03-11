@@ -9,12 +9,11 @@ test_urls = [
 
 def get_gridpoints(lat, long):
     url = 'https://api.weather.gov/points/{},{}'.format(lat, long)
-    response = requests.get(url)
+    response = requests.get(url, timeout=5)
     if response.status_code == 200:
         return response.json()['properties']['forecast']
     else:
         print("Error", response.status_code)
-
 
 def get_weather(url):
     response = requests.get(url)
@@ -24,9 +23,7 @@ def get_weather(url):
         data = json.dumps(json_data, indent=4)
         return data
     else:
-        print(url)
-        print("Error", response.status_code)  
-
+        print("Error", response.status_code)
 
 def write_to_json_file(data, url):
     url = url.split('/')
