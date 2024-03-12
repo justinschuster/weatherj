@@ -27,7 +27,7 @@ def get_weather(url):
 
 def write_to_json_file(data, url):
     url = url.split('/')
-    file = open('test_data/json/example-{}-{}.json'.format(url[4], url[5]), 'w')
+    file = open('../test_data/json/example-{}-{}.json'.format(url[4], url[5]), 'w')
     file.write(data)
     file.close()
 
