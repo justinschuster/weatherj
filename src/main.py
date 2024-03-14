@@ -4,7 +4,7 @@ from pyspark.sql.functions import *
 def main():
     spark = SparkSession.builder.appName("WeatherJ").getOrCreate()
     df = spark.read.load(
-        '../test_data/json/*.json',
+        'test_data/json/*.json',
         format = 'json',
         multiLine = True,
         schema=None
