@@ -1,3 +1,4 @@
 test_data/*
 src/test_data/*
 myenv/*
+.vscode/*
