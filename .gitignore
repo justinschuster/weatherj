@@ -2,3 +2,4 @@ test_data/*
 src/test_data/*
 myenv/*
 .vscode/*
+src/__pycache__/api.cpython-311.pyc

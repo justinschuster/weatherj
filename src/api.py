@@ -2,11 +2,6 @@ from os import write
 import requests
 import json
 
-test_urls = [
-    'https://api.weather.gov/gridpoints/OKX/33,35/forecast',
-    'https://api.weather.gov/gridpoints/LWX/96,70/forecast'
-]
-
 def get_gridpoints(lat, long):
     url = 'https://api.weather.gov/points/{},{}'.format(lat, long)
     response = requests.get(url, timeout=5)
@@ -38,8 +33,3 @@ def fix_json_format(data):
         i['dewpoint'] = i['dewpoint']['value']
         i['relativeHumidity'] = i['relativeHumidity']['value']
     return data['properties']['periods']
-
-# print(get_gridpoints(39, -74))
-for i in test_urls:
-    data = get_weather(i)
-    write_to_json_file(data, i)
