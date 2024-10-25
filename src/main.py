@@ -9,8 +9,27 @@ class Station:
     def __init__(self, stationId):
         self.stationId = stationId.upper()
 
-    def _stationId():
+        data = get_station_info(self.stationId)
+        properties = data.get("properties", {})
+        self.tz = properties.get("timeZone", {})
+        self.name = properties.get("name", {})
+        self.countyId = properties.get("county", {}).split('/')[5]
+        self.zoneId = properties.get("forecast", {}).split('/')[5]
+
+    def _stationId(self):
         return self.stationId
+
+    def _name(self):
+        return self.name
+
+    def _countyId(self):
+        return self.countyId
+
+    def _tz(self):
+        return self.tz
+
+    def _zoneId(self):
+        return self.zoneId
  
 def get_station_info(stationId):
     data = requests.get(f"{_BASE_URL_}/stations/{stationId}")
@@ -29,9 +48,7 @@ def get_all_station_ids():
     station_count = 0
     while True:
         try:
-            print(len(all_stations))
-            print(page)
-            print()
+            if page == 5: break; # for testing
             url = f"{_BASE_URL_}/stations"
 
             if cursor:
@@ -105,7 +122,8 @@ def latest_observation(stationId):
     resp = requests.get(url)
 
 def main():
-    get_all_station_ids()
+    stationId = get_all_station_ids()[0]
+    station = Station(stationId)
 
 if __name__=='__main__':
     main()
