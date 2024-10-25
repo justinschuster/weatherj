@@ -2,8 +2,6 @@ import json as json
 
 from utils import get_station_info
 
-_BASE_URL_ = "https://api.weather.gov"
-
 class Station:
     def __init__(self, stationId):
         self.stationId = stationId.upper()
